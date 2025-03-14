@@ -18,7 +18,7 @@ export default function DocumentUpload() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/applicants")
+      .get("https://doc-upload-bc.onrender.com/api/applicants")
       .then((response) => setApplicants(response.data))
       .catch((error) => console.error("Error fetching applicants:", error));
   }, []);
@@ -26,7 +26,7 @@ export default function DocumentUpload() {
   useEffect(() => {
     if (selectedApplicant) {
       axios
-        .get(`http://localhost:5000/api/documents/${selectedApplicant}`)
+        .get(`https://doc-upload-bc.onrender.com/api/documents/${selectedApplicant}`)
         .then((response) =>
           setDocuments((prev) => ({ ...prev, [selectedApplicant]: response.data }))
         )
@@ -37,7 +37,7 @@ export default function DocumentUpload() {
   const handleAddApplicant = () => {
     if (!newApplicantName) return;
     axios
-      .post("http://localhost:5000/api/applicants", { name: newApplicantName })
+      .post("https://doc-upload-bc.onrender.com/api/applicants", { name: newApplicantName })
       .then((response) => {
         setApplicants([...applicants, response.data]);
         setNewApplicantName("");
@@ -48,7 +48,7 @@ export default function DocumentUpload() {
   
   const handleDeleteApplicant = (id) => {
     axios
-      .delete(`http://localhost:5000/api/applicants/${id}`)
+      .delete(`https://doc-upload-bc.onrender.com/api/applicants/${id}`)
       .then(() => {
         setApplicants((prev) => prev.filter((applicant) => applicant.id !== id));
         if (selectedApplicant === id) setSelectedApplicant(null);
@@ -77,7 +77,7 @@ export default function DocumentUpload() {
     formData.append("file_name", docName);
 
     axios
-      .post("http://localhost:5000/api/documents", formData)
+      .post("https://doc-upload-bc.onrender.com/api/documents", formData)
       .then(() => alert("File uploaded successfully!"))
       .catch((error) => alert("Error uploading file:", error));
   };

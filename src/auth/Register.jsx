@@ -12,7 +12,7 @@ export default function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/register", {
+      await axios.post("https://doc-upload-bc.onrender.com/api/register", {
         name,
         username, // ✅ Send username
         email,
